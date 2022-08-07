@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  AppContainer,
+  Button,
+  Header,
+  HR,
+  Input,
+  KeccakBadge,
+  Nounce,
+} from "./components";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer className="App">
+      <Header>Find lower keccak</Header>
+      <Input placeholder="Insert hexadecimal-256" />
+      <Button>Submit</Button>
+      <HR />
+      <Header>Results</Header>
+      <Nounce>
+        <b>Nounce: </b>5
+      </Nounce>
+      <KeccakBadge>
+        54e604787cbf194841e7b68d7cd28786f6c9a0a3ab9f8b0a0e87cb4387ab0107
+      </KeccakBadge>
+    </AppContainer>
   );
-}
+};
 
 export default App;
