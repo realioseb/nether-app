@@ -34,7 +34,6 @@ export const useApp = () => {
     [error]
   );
 
-  // TODO: frontend validation
   const handleSubmit = useCallback(async () => {
     if (!validate(text)) {
       setError("invalid hex");
@@ -45,7 +44,10 @@ export const useApp = () => {
     setApiError("");
     setDisabled(true);
 
-    const results = await fetch(`${API}?hex=${text}`);
+    const results = await fetch(`${API}?hex=${text}`).catch((err) => ({
+      json: () => ({ error: "Server Unavailable" }),
+    }));
+
     const data: ApiData | ApiError = await results.json();
 
     setDisabled(false);
