@@ -37,9 +37,13 @@ export const Button = styled.button`
   background-color: limegreen;
   color: white;
   cursor: pointer;
-  &:active {
+  &:enabled:active {
     background-color: #2bb230;
-    transform: translateY(4px);
+    transform: translateY(1px);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
   }
 `;
 
@@ -59,4 +63,8 @@ export const KeccakBadge = styled.div`
 
 export const Nounce = styled.div`
   margin-bottom: 8px;
+`;
+
+export const Error = styled.div`
+  color: red;
 `;

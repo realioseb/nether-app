@@ -6,22 +6,48 @@ import {
   Input,
   KeccakBadge,
   Nounce,
+  Error,
 } from "./components";
+import { useApp } from "./use-app";
 
 const App = () => {
+  const {
+    apiData,
+    text,
+    handleChange,
+    handleSubmit,
+    btnDisabled,
+    apiError,
+    error,
+  } = useApp();
+
   return (
     <AppContainer className="App">
       <Header>Find lower keccak</Header>
-      <Input placeholder="Insert hexadecimal-256" />
-      <Button>Submit</Button>
-      <HR />
-      <Header>Results</Header>
-      <Nounce>
-        <b>Nounce: </b>5
-      </Nounce>
-      <KeccakBadge>
-        54e604787cbf194841e7b68d7cd28786f6c9a0a3ab9f8b0a0e87cb4387ab0107
-      </KeccakBadge>
+
+      <Input
+        placeholder="Insert hexadecimal-256"
+        value={text}
+        onChange={handleChange}
+      />
+      <Button type="button" onClick={handleSubmit} disabled={btnDisabled}>
+        Submit
+      </Button>
+
+      {!!apiError && <Error>Server Error: {apiError}</Error>}
+      {!!error && <Error>Validation Error: {error}</Error>}
+
+      {apiData && (
+        <>
+          <HR />
+          <Header>Results</Header>
+          <Nounce>
+            <b>Nounce: </b>
+            {apiData.nounce}
+          </Nounce>
+          <KeccakBadge>{apiData.hash}</KeccakBadge>
+        </>
+      )}
     </AppContainer>
   );
 };
