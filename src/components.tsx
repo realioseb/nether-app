@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const pos = css`
   padding: 8px;
@@ -32,6 +32,7 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   ${pos};
+  position: relative;
   border: unset;
   background: unset;
   background-color: limegreen;
@@ -67,4 +68,23 @@ export const Nounce = styled.div`
 
 export const Error = styled.div`
   color: red;
+`;
+
+const rotate = keyframes`
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+export const LoadingSpinner = styled.div`
+  border: 4px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  border-top-color: white;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  transition: opacity 200ms;
+  animation: ${rotate} 1s linear;
+  animation-iteration-count: infinite;
+  transition-delay: "200ms";
 `;

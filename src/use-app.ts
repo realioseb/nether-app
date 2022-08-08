@@ -3,7 +3,7 @@ import { ChangeEvent, useCallback, useState } from "react";
 const API = process.env.API_URL || "http://localhost:4000";
 
 export type ApiData = {
-  nounce: number;
+  nounce: string;
   hash: string;
 };
 
@@ -52,11 +52,7 @@ export const useApp = () => {
 
     setDisabled(false);
 
-    if ("error" in data) {
-      setApiError(data.error);
-    } else {
-      setApiData(data);
-    }
+    "error" in data ? setApiError(data.error) : setApiData(data);
   }, [text]);
 
   return {

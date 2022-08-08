@@ -7,6 +7,7 @@ import {
   KeccakBadge,
   Nounce,
   Error,
+  LoadingSpinner,
 } from "./components";
 import { useApp } from "./use-app";
 
@@ -31,7 +32,7 @@ const App = () => {
         onChange={handleChange}
       />
       <Button type="button" onClick={handleSubmit} disabled={btnDisabled}>
-        Submit
+        {btnDisabled ? <LoadingSpinner /> : "Submit"}
       </Button>
 
       {!!apiError && <Error>Server Error: {apiError}</Error>}
